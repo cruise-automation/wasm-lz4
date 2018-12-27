@@ -61,3 +61,9 @@ $ git clone git@github.com:cruise-automation/wasm-lz4.git --recursive
 #### Step 3
 
 Run `npm run build` to invoke emcc and compile the code in `wasm-lz4.c` as well as the required lz4 source files from the lz4 git submodule.
+
+#### Step 4
+
+To run the tests, run `npm install` followed by `npm test`.
+
+To run the tests in Docker, first make sure Docker is installed, and then run `npm run docker:test`.
