@@ -1,0 +1,22 @@
+{
+  "name": "wasm-lz4",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "./build.sh",
+    "prepack": "npm run build",
+    "docker:build": "docker build . -t wasm-lz4",
+    "docker:test": "npm run docker:build && docker run --rm -t wasm-lz4 npm test",
+    "test": "npm run build && mocha"
+  },
+  "devDependencies": {
+    "eslint": "4.19.1",
+    "mocha": "5.2.0",
+    "prettier": "1.13.0",
+    "rosbag": "1.1.0"
+  },
+  "prettier": {
+    "printWidth": 120
+  }
+}
