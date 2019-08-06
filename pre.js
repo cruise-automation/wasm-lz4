@@ -8,7 +8,6 @@
 // which gives us the opportunity to override the module resolution behavior in node
 
 var nodePath;
-var WASM_PATH = require("./wasm-lz4.wasm");
 
 if (typeof process !== "undefined") {
   Module["ENVIRONMENT"] = process.env.WASM_LZ4_ENVIRONMENT;
@@ -40,7 +39,9 @@ Module.locateFile = function(input) {
     return __dirname +  "/" + input;
   }
   if (input.endsWith(".wasm")) {
-    return WASM_PATH;
+    // Dynamically required if running in a web context.
+    const wasm_path = require("./wasm-lz4.wasm");
+    return wasm_path;
   }
 
   return input;
