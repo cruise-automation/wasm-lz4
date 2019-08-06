@@ -8,6 +8,7 @@
 // which gives us the opportunity to override the module resolution behavior in node
 
 var nodePath;
+var WASM_PATH = require("./wasm-lz4.wasm");
 
 if (typeof process !== "undefined") {
   Module["ENVIRONMENT"] = process.env.WASM_LZ4_ENVIRONMENT;
@@ -22,6 +23,7 @@ if (ENVIRONMENT_IS_NODE) {
   existingUncaughtListeners = process.listeners("unhandledRejection") || [];
 }
 
+
 // do some manipulating of the input file path
 // when running in node so the file is resolved
 // relative to the module root. by default its resolved to `wasm-lz4.wasm`
@@ -35,7 +37,11 @@ Module.locateFile = function(input) {
       }
     };
     // return the full resolved path to the input file
-    return __dirname + "/" + input;
+    return __dirname +  "/" + input;
   }
+  if (input.endsWith(".wasm")) {
+    return WASM_PATH;
+  }
+
   return input;
 };
