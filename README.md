@@ -27,7 +27,32 @@ const decompressedBytes = decompress(compressedBytes, outputBytes);
 
 ## Using the module in a browser
 
-Emscripten compiled WebAssembly modules are built in 2 parts: a `.js` side and a `.wasm` side.  In the browser the `.js` side needs to download the `.wasm` side from the server so it can compile it.  There is [more information available in the emscripten documentation](https://kripken.github.io/emscripten-site/docs/compiling/Deploying-Pages.html).  When loading the module in the browser via webpack you need to make sure your sever will send the `.wasm` part of the module to the browser when the `.js` side of the module requests it.
+Emscripten compiled WebAssembly modules are built in 2 parts: a `.js` side and a `.wasm` side.  In the browser the `.js` side needs to download the `.wasm` side from the server so it can compile it.  There is [more information available in the emscripten documentation](https://kripken.github.io/emscripten-site/docs/compiling/Deploying-Pages.html).
+
+### Usage with Webpack
+
+We require the `wasm-lz4.wasm` module in our `locateFile` definition, so that module bundling with dynamic paths is possible. So if you are using Webpack, you can add the following entry:
+
+```
+...
+rules : [
+  ...
+  {
+    test: /\.wasm$/,
+    type: "javascript/auto",
+    use: {
+      loader: "file-loader",
+      options: {
+        name: "[name]-[hash].[ext]",
+      },
+    },
+  },
+  ...
+]
+...
+ ```
+
+The `javascript/auto` type setting tells Webpack to bypass its default importing logic, and just import the file as-is. Hopefully this hack will go away with improved WebAssembly support in webpack.
 
 ## Asynchronous loading & compiling
 

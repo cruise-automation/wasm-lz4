@@ -1,6 +1,6 @@
 {
   "name": "wasm-lz4",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "main": "index.js",
   "license": "Apache-2.0",
   "repository": "cruise-automation/wasm-lz4",

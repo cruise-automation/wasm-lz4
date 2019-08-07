@@ -22,6 +22,7 @@ if (ENVIRONMENT_IS_NODE) {
   existingUncaughtListeners = process.listeners("unhandledRejection") || [];
 }
 
+
 // do some manipulating of the input file path
 // when running in node so the file is resolved
 // relative to the module root. by default its resolved to `wasm-lz4.wasm`
@@ -35,7 +36,13 @@ Module.locateFile = function(input) {
       }
     };
     // return the full resolved path to the input file
-    return __dirname + "/" + input;
+    return __dirname +  "/" + input;
   }
+  if (input.endsWith(".wasm")) {
+    // Dynamically required if running in a web context.
+    const wasm_path = require("./wasm-lz4.wasm");
+    return wasm_path;
+  }
+
   return input;
 };
