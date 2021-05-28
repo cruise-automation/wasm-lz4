@@ -66,7 +66,6 @@ ModulePromise.then((mod) => {
 
   // export the Module object for testing purposes _only_
   if (typeof process === "object" && process.env.NODE_ENV === "test") {
-    console.log("doin it");
     module.exports.__module = Module;
   }
 });
