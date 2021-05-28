@@ -4,6 +4,11 @@
   "main": "index.js",
   "license": "Apache-2.0",
   "repository": "cruise-automation/wasm-lz4",
+  "files": [
+    "index.js",
+    "wasm-lz4.js",
+    "wasm-lz4.wasm"
+  ],
   "scripts": {
     "build": "./build.sh",
     "prepack": "npm run build",
