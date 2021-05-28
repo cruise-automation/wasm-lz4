@@ -5,14 +5,13 @@
 //  You may not use this file except in compliance with the License.
 
 const ModuleFactory = require("./wasm-lz4");
-const Module = ModuleFactory();
+const ModulePromise = ModuleFactory();
 
-var context;
-
-let loaded = false;
+let Module;
+let context;
 
 function ensureLoaded() {
-  if (!loaded) {
+  if (!Module) {
     throw new Error(
       `wasm-lz4 has not finished loading. Please wait with "await decompress.isLoaded" before calling decompress`
     );
@@ -59,14 +58,15 @@ module.exports = function decompress(src, destSize) {
 // module loading is async and can take
 // several hundred milliseconds...accessing the module
 // before it is loaded will throw an error
-module.exports.isLoaded = new Promise(resolve => {
-  Module.onRuntimeInitialized = () => {
-    loaded = true;
-    resolve();
-  };
-});
+module.exports.isLoaded = ModulePromise.then((mod) => mod["ready"].then(() => {}));
 
-// export the Module object for testing purposes _only_
-if (typeof process === "object" && process.env.NODE_ENV === "test") {
-  module.exports.__module = Module;
-}
+// Wait for the promise returned from ModuleFactory to resolve
+ModulePromise.then((mod) => {
+  Module = mod;
+
+  // export the Module object for testing purposes _only_
+  if (typeof process === "object" && process.env.NODE_ENV === "test") {
+    console.log("doin it");
+    module.exports.__module = Module;
+  }
+});
