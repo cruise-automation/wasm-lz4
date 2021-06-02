@@ -2,6 +2,8 @@
 
 https://github.com/lz4/lz4 compiled to WebAssembly. For now only decompression is supported. PRs welcome!
 
+WASM compilation has been tested with Emscripten SDK [2.0.23](https://github.com/emscripten-core/emsdk/tree/2.0.23).
+
 ## API
 
 `wasm-lz4` exports a single function:
