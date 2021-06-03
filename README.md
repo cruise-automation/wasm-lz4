@@ -75,13 +75,15 @@ async function doWork() {
 
 #### Step 1
 
-First, and most importantly, you need to install emscripten and activate it into your terminal environment.  [Follow these instructions](https://kripken.github.io/emscripten-site/docs/getting_started/downloads.html).
+First, and most importantly, you need to install emscripten and activate it into your terminal environment.
 
-IMPORTANT: For now we only support emscripten 1.37. So run these commands instead of the ones in the guide above:
+IMPORTANT: For now we only support emscripten 2.0.23.
 
 ```sh
-./emsdk install sdk-1.37.40-64bit
-./emsdk activate sdk-1.37.40-64bit
+git clone https://github.com/emscripten-core/emsdk.git
+cd emsdk
+./emsdk install sdk-2.0.23-64bit
+./emsdk activate sdk-2.0.23-64bit
 source ./emsdk_env.sh
 ```
 
