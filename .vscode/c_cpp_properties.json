@@ -12,10 +12,8 @@
         "${workspaceFolder}/**"
       ],
       "defines": [],
-      "compilerPath": "/usr/bin/clang++-3.8",
       "cStandard": "c11",
-      "cppStandard": "c++17",
-      "intelliSenseMode": "clang-x64"
+      "cppStandard": "c++17"
     }
   ],
   "version": 4

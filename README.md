@@ -2,8 +2,6 @@
 
 https://github.com/lz4/lz4 compiled to WebAssembly. For now only decompression is supported. PRs welcome!
 
-WASM compilation has been tested with Emscripten SDK [2.0.23](https://github.com/emscripten-core/emsdk/tree/2.0.23).
-
 ## API
 
 `wasm-lz4` exports a single function:
@@ -71,36 +69,6 @@ async function doWork() {
 
 ## Developing locally
 
-### Building
-
-#### Step 1
-
-First, and most importantly, you need to install emscripten and activate it into your terminal environment.
-
-IMPORTANT: For now we only support emscripten 2.0.23.
-
-```sh
-git clone https://github.com/emscripten-core/emsdk.git
-cd emsdk
-./emsdk install sdk-2.0.23-64bit
-./emsdk activate sdk-2.0.23-64bit
-source ./emsdk_env.sh
-```
-
-#### Step 2
-
-Next, clone the module recursively as it includes [lz4](https://github.com/lz4/lz4) as a git submodule:
-
-```sh
-$ git clone git@github.com:cruise-automation/wasm-lz4.git --recursive
-```
-
-#### Step 3
-
-Run `npm run build` to invoke emcc and compile the code in `wasm-lz4.c` as well as the required lz4 source files from the lz4 git submodule.
-
-#### Step 4
-
-To run the tests, run `npm install` followed by `npm test`.
-
-To run the tests in Docker, first make sure Docker is installed, and then run `npm run docker:test`.
+1. Run `npm install` to install dependencies.
+2. Run `npm run build` to invoke emcc inside a Docker container and compile the code in `wasm-lz4.c` as well as the required lz4 source files. The output will be in `dist/` on the host machine.
+3. Run `npm test` to run the tests.

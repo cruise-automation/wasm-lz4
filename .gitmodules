@@ -1,9 +1,0 @@
-#  Copyright (c) 2018-present, Cruise LLC
-#
-#  This source code is licensed under the Apache License, Version 2.0,
-#  found in the LICENSE file in the root directory of this source tree.
-#  You may not use this file except in compliance with the License.
-
-[submodule "lz4"]
-	path = lz4
-	url = git://github.com/lz4/lz4.git

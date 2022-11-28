@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <emscripten/emscripten.h>
-#include "./lz4/lib/lz4frame.h"
+#include "../lz4/lib/lz4frame.h"
 
 int main(int argc, char **argv)
 {
