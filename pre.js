@@ -13,16 +13,6 @@ if (typeof process !== "undefined") {
   Module["ENVIRONMENT"] = process.env.WASM_LZ4_ENVIRONMENT;
 }
 
-var existingUncaughtListeners = [];
-// need to work around emscripten adding a process.exit(1) whenever
-// an unhandledRejection is emitted by process in node by saving any existing listeners
-// and then re-adding them in post.js
-// https://github.com/kripken/emscripten/pull/5948
-if (ENVIRONMENT_IS_NODE) {
-  existingUncaughtListeners = process.listeners("unhandledRejection") || [];
-}
-
-
 // do some manipulating of the input file path
 // when running in node so the file is resolved
 // relative to the module root. by default its resolved to `wasm-lz4.wasm`

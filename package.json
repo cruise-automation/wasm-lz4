@@ -1,26 +1,24 @@
 {
   "name": "wasm-lz4",
   "version": "2.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "Apache-2.0",
   "repository": "cruise-automation/wasm-lz4",
   "files": [
-    "index.js",
-    "wasm-lz4.js",
-    "wasm-lz4.wasm"
+    "dist/index.js",
+    "dist/wasm-lz4.js",
+    "dist/wasm-lz4.wasm"
   ],
   "scripts": {
-    "build": "./build.sh",
+    "build": "./docker-build.sh",
     "prepack": "npm run build",
-    "docker:build": "docker build . -t wasm-lz4",
-    "docker:test": "npm run docker:build && docker run --rm -t wasm-lz4 npm test",
-    "test": "npm run build && mocha"
+    "test": "mocha"
   },
   "devDependencies": {
-    "eslint": "4.19.1",
-    "mocha": "5.2.0",
-    "prettier": "1.13.0",
-    "rosbag": "1.1.0"
+    "eslint": "8.28.0",
+    "mocha": "10.1.0",
+    "prettier": "2.8.0",
+    "rosbag": "3.0.1"
   },
   "prettier": {
     "printWidth": 120
