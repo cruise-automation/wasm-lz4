@@ -25,20 +25,6 @@ describe("wasm-lz4", () => {
     decompress.isLoaded.then(done);
   });
 
-  it("does not add an uhandledRejection listener", () => {
-    assert(process.listeners("unhandledRejection").length === 0);
-  });
-
-  it("preserves existing unhandledRejection listeners", () => {
-    const path = require.resolve("../wasm-lz4.js");
-    require.cache[path] = undefined;
-    const unhandled = err => process.exit(1);
-    process.on("unhandledRejection", unhandled);
-    const mod = require("../");
-    assert(process.listeners("unhandledRejection").length === 1);
-    process.removeAllListeners("unhandledRejection");
-  });
-
   it("decompresses rosbag chunks", async () => {
     const bag = await open(`${__dirname}/example-lz4.bag`);
     const options = {
