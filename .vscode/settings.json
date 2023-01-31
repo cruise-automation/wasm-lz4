@@ -1,5 +1,6 @@
 {
   "files.associations": {
-    "emscripten.h": "c"
+    "emscripten.h": "c",
+    "lz4frame.h": "c"
   }
 }

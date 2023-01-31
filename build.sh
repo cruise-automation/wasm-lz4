@@ -1,15 +1,9 @@
 #!/usr/bin/env bash
 
-#  Copyright (c) 2018-present, Cruise LLC
-#
-#  This source code is licensed under the Apache License, Version 2.0,
-#  found in the LICENSE file in the root directory of this source tree.
-#  You may not use this file except in compliance with the License.
-
 emcc \
-  lz4/lib/lz4.c \
-  lz4/lib/xxhash.c \
-  lz4/lib/lz4frame.c \
+  vendor/lz4/lib/lz4.c \
+  vendor/lz4/lib/xxhash.c \
+  vendor/lz4/lib/lz4frame.c \
   -o dist/wasm-lz4.js src/wasm-lz4.c `# this runs emscripten on the code in wasm-lz4.c` \
   -O3 `# compile with all optimizations enabled` \
   -s WASM=1 `# compile to .wasm instead of asm.js` \

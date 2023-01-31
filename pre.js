@@ -1,9 +1,3 @@
-//  Copyright (c) 2018-present, Cruise LLC
-//
-//  This source code is licensed under the Apache License, Version 2.0,
-//  found in the LICENSE file in the root directory of this source tree.
-//  You may not use this file except in compliance with the License.
-
 // this file is injected into the wasm-lz4.js compiled file _before_ most of the module definition
 // which gives us the opportunity to override the module resolution behavior in node
 
